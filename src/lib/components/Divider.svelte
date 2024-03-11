@@ -1,8 +1,5 @@
 <script>
-  export let text;
+  export let text = "";
 </script>
 
-{#if text}
-  <div>{text}</div>
-{/if}
-<hr/>
+<div class="divider">{text}</div>

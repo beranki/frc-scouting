@@ -2,4 +2,6 @@
 	import '../app.pcss';
 </script>
 
-<slot />
+<div class="w-full flex flex-col items-center">
+  <slot />
+</div>

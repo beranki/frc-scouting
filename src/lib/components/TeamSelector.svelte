@@ -22,8 +22,10 @@
 
   <div>
     {#each alliances as label}
-      <input type="radio" bind:group={alliance} id={label} value={label}/>
-      <label for={label}>{label}</label>
+      <label class="label" for={label}>
+        <span>{label}</span>
+        <input type="radio" class="radio" bind:group={alliance} id={label} value={label}/>
+      </label>
     {/each}
   </div>
 </div>
