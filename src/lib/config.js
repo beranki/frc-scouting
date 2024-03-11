@@ -122,3 +122,14 @@ export const emptyData = () => {
 
   return o;
 }
+
+/* Makes sure the forum is filled correctly
+ * - msg specifies the reason for the invalidation.
+ * @return { ok: bool, msg: string | undefined }
+ */
+export const validate = (forum) => {
+
+  return {
+    ok: true,
+  };
+}

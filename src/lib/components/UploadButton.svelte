@@ -1,19 +1,32 @@
 <script>
+  import { validate } from '$lib/config.js';
+
   export let forum;
 
-  /* Makes sure the forum is filled correctly
-   */
-  const validate = () => {
+  const upload = async () => {
 
-    return true;
-  }
+    // Validation
+    const { ok, msg } = validate();
+    if (!ok) {
+      alert("invalid forum: " + msg);
+    }
 
-  const upload = () => {
-    // TODO
     console.log('uploading', forum);
-    alert("will do soon, forum data in console");
+
+    const res = await fetch('/', {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(forum)
+    });
+
+    if (res.status != 200) {
+      console.log('non-200 response: ', res);
+      alert(await res.text());
+    } else {
+      console.log('200 received');
+    }
   }
 
 </script>
 
-<button class="btn btn-success" on:click={() => validate() && upload() }> Upload </button>
+<button class="btn btn-success" on:click={upload}> Upload </button>
