@@ -9,7 +9,7 @@
   {#if configs.type == "text"} 
 
     <label class="input input-bordered flex items-center gap-2">
-      <input type="text" class="grow" placeholder={configs.name} bind:value/>
+      <input type="text" maxlength={configs.max ?? 200} class="grow" placeholder={configs.name} bind:value/>
     </label>
 
 

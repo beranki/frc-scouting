@@ -6,9 +6,10 @@
   const upload = async () => {
 
     // Validation
-    const { ok, msg } = validate();
+    const { ok, msg } = validate(forum);
     if (!ok) {
       alert("invalid forum: " + msg);
+      return;
     }
 
     console.log('uploading', forum);
@@ -20,8 +21,10 @@
     });
 
     if (res.status != 200) {
-      console.log('non-200 response: ', res);
-      alert(await res.text());
+      const text = await res.text();
+      console.log('non-200 response: ', text);
+
+      alert(text);
     } else {
       console.log('200 received');
     }

@@ -20,18 +20,13 @@
   console.log("fields", Object.entries(fields));
 </script>
 
-<div class="flex flex-col items-center w-full space-y-10">
-  <Title />
+<Title />
+<div>
+  <Divider text={"Pre-Game"}/>
+  <Field configs={{ name: "scout initials", type: "text", max: 2 }} bind:value={forum.scout}/>
+  <TeamSelector bind:value={forum.team}/>
 
-  <div class="text-center">
-    <Divider text={"Pre-Game"}/>
-
-    <Field configs={{ name: "Scout Initials", type: "text" }} bind:value={forum.scout}/>
-    <Field configs={{ name: "Event", type: "text" }} bind:value={forum.event}/>
-    <Field configs={{ name: "Team Number", type: "number", min: 0, max: MAX_TEAMS }} bind:value={forum.team}/>
-
-    <TeamSelector bind:value={forum.team}/>
-
+  <div>
     {#each fields as field}
       {#if field.type == "divider"} 
         <Divider text={field.name}/>
