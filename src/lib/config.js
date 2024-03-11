@@ -7,18 +7,18 @@ export const fields = [
     type: "divider" 
   },
   {
-    name: "Leave Starting Zone",
+    name: "Leave_Starting_Zone",
     type: "bool",
     toggle_tag: "success"
   },
   { 
-    name: "Amp Scores",
+    name: "Auto_Amp_Scores",
     type: "number",
     min: 0,
     max: 6,
   },
   { 
-    name: "Speaker Scores",
+    name: "Auto_Speaker_Scores",
     type: "number",
     min: 0,
     max: 6,
@@ -28,25 +28,25 @@ export const fields = [
     type: "divider" 
   },
   {
-    name: "Amp Scores",
+    name: "TeleOp_Amp_Scores",
     type: "number",
     min: 0,
     max: 10,
   },
   {
-    name: "Speaker Scores",
+    name: "TeleOp_Speaker_Scores",
     type: "number",
     min: 0,
     max: 10,
   },
   {
-    name: "Times Amplified",
+    name: "Times_Amplified",
     type: "number",
     min: 0,
     max: 10,
   },
   {
-    name: "Pickup From",
+    name: "Pickup_From",
     type: "select",
     select_options: ["Source", "Floor", "Both", "Not Attempted"]
   },
@@ -55,12 +55,12 @@ export const fields = [
     type: "divider" 
   },
   {
-    name: "Final Status",
+    name: "Final_Status",
     type: "select",
     select_options: ["Parked", "Onstage", "Onstage (spotlit)", "Harmony", "Attempted But Failed", "Not Attempted"]
   },
   {
-    name: "Note in Trap",
+    name: "Note_in_Trap",
     type: "bool",
     toggle_tag: "success"
   },
@@ -69,17 +69,17 @@ export const fields = [
     type: "divider" 
   },
   {
-    name: "Driver Skill",
+    name: "Driver_Skill",
     type: "rating",
     stops: 3
   },
   {
-    name: "Defense Rating",
+    name: "Defense_Rating",
     type: "rating",
     stops: 4
   },
   {
-    name: "Speed Rating",
+    name: "Speed_Rating",
     type: "rating",
     stops: 5
   },
@@ -94,12 +94,12 @@ export const fields = [
     toggle_tag: "error"
   },
   {
-    name: "Dropped Notes (>2)",
+    name: "Dropped_Notes",
     type: "bool",
     toggle_tag: "error"
   },
   {
-    name: "Potential Alliance Partner?",
+    name: "Potential_Alliance_Partner",
     type: "bool",
     toggle_tag: "success"
   },
@@ -124,6 +124,10 @@ export const emptyData = () => {
       o[name] = false;
     if (type == 'text') 
       o[name] = '';
+    if (type == 'rating')
+      o[name] = 0;
+    if (type == 'select')
+      o[name] = '';
   }
 
   return o;
@@ -137,6 +141,10 @@ export const validate = (forum) => {
   if (!forum) 
     return { ok: false, msg: `forum undefined` };
 
+  console.log("VALIDATING", forum.team);
+  console.log("VALIDATING", typeof forum.team === 'number')
+
+
   // Fixed fields (scout initials, team number, comments)
   if (typeof forum.team !== 'number') 
     return { ok: false, msg: `'team' is not a number, got ${forum.team}` };
@@ -147,36 +155,38 @@ export const validate = (forum) => {
 
   // Data fields
   for (const field of fields) {
+    if (field.type != 'divider') {
+      const v = forum.data[field.name];
+
+      // If not defined or null
+      if (v === null || v === undefined) 
+        return { ok: false, msg: `field '${field.name}' undefined` };
+
+      // If wrong type
+      if (field.type == 'bool') {
+        if (typeof v != 'boolean') 
+          return { ok: false, msg: `field '${field.name}' is not a boolean, got ${v}` };
+      }
+
+      if (field.type == 'number' || field.type == 'rating') {
+        if (typeof v != 'number') 
+          return { ok: false, msg: `field '${field.name}' is not a number, got ${v}` };
+
+        // number bounds
+        if ((field.max && v > field.max) || (field.min && v < field.min))
+          return { ok: false, msg: `field '${field.name}' is out of bounds [${field.min}, ${field.max}], got ${v}` };
+      }
+
+      // If text
+      if (field.type == 'text' || field.type == 'select') {
+        if (typeof v != 'string') 
+          return { ok: false, msg: `field '${field.name}' is not a string, got: ${v}` };
+
+        if (v.length > field.max) 
+          return { ok: false, msg: `field '${field.name}' exceeds character limit of ${field.max}` };
+      }
+    }
     
-    const v = forum.data[field.name];
-
-    // If not defined or null
-    if (!v) 
-      return { ok: false, msg: `field '${field.name}' undefined` };
-
-    // If wrong type
-    if (field.type == 'bool') {
-      if (typeof v != 'boolean') 
-        return { ok: false, msg: `field '${field.name}' is not a boolean, got ${v}` };
-    }
-
-    if (field.type == 'number') {
-      if (typeof v != 'number') 
-        return { ok: false, msg: `field '${field.name}' is not a number, got ${v}` };
-
-      // number bounds
-      if ((field.max && v > field.max) || (field.min && v < field.min))
-        return { ok: false, msg: `field '${field.name}' is out of bounds [${field.min}, ${field.max}], got ${v}` };
-    }
-
-    // If text
-    if (field.type == 'text') {
-      if (typeof v != 'string') 
-        return { ok: false, msg: `field '${field.name}' is not a string, got: ${v}` };
-
-      if (v.length > field.max) 
-        return { ok: false, msg: `field '${field.name}' exceeds character limit of ${field.max}` };
-    }
   }
 
   return {

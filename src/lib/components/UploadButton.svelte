@@ -6,13 +6,15 @@
   const upload = async () => {
 
     // Validation
+    console.log("pre-val", forum);
+
     const { ok, msg } = validate(forum);
     if (!ok) {
       alert("invalid forum: " + msg);
       return;
     }
 
-    console.log('uploading', forum);
+    console.log('uploading', forum.team);
 
     const res = await fetch('/', {
       method: "POST",
