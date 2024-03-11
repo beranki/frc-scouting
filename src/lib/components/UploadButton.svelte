@@ -16,4 +16,4 @@
 
 </script>
 
-<button class="btn" on:click={() => validate() && upload() }> Upload </button>
+<button class="btn btn-success" on:click={() => validate() && upload() }> Upload </button>

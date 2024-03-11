@@ -2,4 +2,4 @@
   export let text = "";
 </script>
 
-<div class="divider">{text}</div>
+<div class="font-mono text-2xl divider divider-error w-full">{text}</div>

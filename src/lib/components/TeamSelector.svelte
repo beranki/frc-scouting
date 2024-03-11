@@ -3,9 +3,9 @@
 
   export let value;
 
-  let match;
+  let match = 1;
   let alliance;
-  const alliances = ["red1","red2", "red3", "blue1", "blue2", "blue3"]; 
+  const alliances = ["Red 1", "Red 2", "Red 3", "Blue 1", "Blue 2", "Blue 3"]; 
 
   // Contest-specific
   const MAX_MATCH_NUM = 74;
@@ -18,14 +18,6 @@
 </script>
 
 <div>
-  <Field configs={{ name: "match#", type: "number", min: 0, max: MAX_MATCH_NUM }} bind:value={match}/>
-
-  <div>
-    {#each alliances as label}
-      <label class="label" for={label}>
-        <span>{label}</span>
-        <input type="radio" class="radio" bind:group={alliance} id={label} value={label}/>
-      </label>
-    {/each}
-  </div>
+  <Field configs={{ name: "Match Number", type: "number", min: 0, max: MAX_MATCH_NUM }} bind:value={match}/>
+  <Field configs={{ name: "Robot", type: "select", select_options: alliances }} bind:value={alliance}/>
 </div>
