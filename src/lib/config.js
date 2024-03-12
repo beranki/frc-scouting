@@ -142,6 +142,7 @@ export const validate = (forum) => {
     return { ok: false, msg: `forum undefined` };
 
   console.log("VALIDATING", forum.team);
+  console.log("V", forum);
   console.log("VALIDATING", typeof forum.team === 'number')
 
 

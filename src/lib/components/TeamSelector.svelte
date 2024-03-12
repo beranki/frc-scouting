@@ -13,7 +13,7 @@
   // When match changes, recalculate match number (TBA)
   $: {
     // TODO:
-    value = match + alliance;
+    //value = match + alliance;
   }
 </script>
 

@@ -4,31 +4,29 @@ import { MongoClient, MongoErrorLabel } from 'mongodb';
 import { MONGODB_URI } from "$env/static/private";
 
 
-export function POST({ request }) {
+export async function POST({ request }) {
   
-  const forum = request.json();
+  const forum = await request.json();
 
-  /*const { ok, msg } = validate(forum);
+  const { ok, msg } = validate(forum);
 
   console.log(forum);
 
   if (!ok) {
     error(400, 'forum invalid: ' + msg);
-  } */
+  }
 
-  MongoClient.connect(MONGODB_URI, function(err, client) {
+  MongoClient.connect(MONGODB_URI, async function(err, client) {
+
     if (err) throw err;
 
     console.log('Connected');
 
     var db = client.db("scouting-data");
+    var coll = db.collection("scouting-data");
 
-    db.collection("scouting-data").insertOne(obj, function(err, res) {
-      if (err) throw err;
-      console.log("1 message inserted");
-      client.close();
-    });
-
+    const result = await coll.insertOne(forum);
+    console.log("REASULT", result);
   });
 
   // Defaults to 200
