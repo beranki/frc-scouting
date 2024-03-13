@@ -125,7 +125,7 @@ export const emptyData = () => {
     if (type == 'text') 
       o[name] = '';
     if (type == 'rating')
-      o[name] = 0;
+      o[name] = 1;
     if (type == 'select')
       o[name] = '';
   }
@@ -156,38 +156,54 @@ export const validate = (forum) => {
 
   // Data fields
   for (const field of fields) {
-    if (field.type != 'divider') {
-      const v = forum.data[field.name];
+    if (field.type === 'divider') continue;
 
-      // If not defined or null
-      if (v === null || v === undefined) 
-        return { ok: false, msg: `field '${field.name}' undefined` };
+    const v = forum.data[field.name];
 
-      // If wrong type
-      if (field.type == 'bool') {
-        if (typeof v != 'boolean') 
-          return { ok: false, msg: `field '${field.name}' is not a boolean, got ${v}` };
-      }
+    // If not defined or null
+    if (v === null || v === undefined) 
+      return { ok: false, msg: `field '${field.name}' undefined` };
 
-      if (field.type == 'number' || field.type == 'rating') {
-        if (typeof v != 'number') 
-          return { ok: false, msg: `field '${field.name}' is not a number, got ${v}` };
-
-        // number bounds
-        if ((field.max && v > field.max) || (field.min && v < field.min))
-          return { ok: false, msg: `field '${field.name}' is out of bounds [${field.min}, ${field.max}], got ${v}` };
-      }
-
-      // If text
-      if (field.type == 'text' || field.type == 'select') {
-        if (typeof v != 'string') 
-          return { ok: false, msg: `field '${field.name}' is not a string, got: ${v}` };
-
-        if (v.length > field.max) 
-          return { ok: false, msg: `field '${field.name}' exceeds character limit of ${field.max}` };
-      }
+    // Per-type validations
+    if (field.type == 'bool') {
+      if (typeof v != 'boolean') 
+        return { ok: false, msg: `field '${field.name}' is not a boolean, got ${v}` };
     }
-    
+
+    if (field.type == 'rating') {
+      if (typeof v != 'number') 
+        return { ok: false, msg: `field '${field.name}' is not a rating (number), got ${v}` };
+
+      // number bounds
+      if (v < 1 || v > field.stops)
+        return { ok: false, msg: `field '${field.name}' (rating) is out of bounds [1, ${field.stops}], got ${v}` };
+    }
+
+    if (field.type == 'number') {
+      if (typeof v != 'number') 
+        return { ok: false, msg: `field '${field.name}' is not a number, got ${v}` };
+
+      // number bounds
+      if ((field.max && v > field.max) || (field.min && v < field.min))
+        return { ok: false, msg: `field '${field.name}' is out of bounds [${field.min}, ${field.max}], got ${v}` };
+    }
+
+    // If text
+    if (field.type == 'text') {
+      if (typeof v != 'string') 
+        return { ok: false, msg: `field '${field.name}' is not a string, got: ${v}` };
+
+      if (v.length > field.max) 
+        return { ok: false, msg: `field '${field.name}' exceeds character limit of ${field.max}` };
+    }
+
+    if (field.type == 'select') {
+      if (typeof v != 'string') 
+        return { ok: false, msg: `field '${field.name}' is not a string, got: ${v}` };
+
+      if (!field.select_options.includes(v)) 
+        return { ok: false, msg: `field '${field.name}'s value is not an option, got: ${v}` };
+    }
   }
 
   return {

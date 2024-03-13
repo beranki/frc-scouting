@@ -1,8 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { validate } from '$lib/config.js';
-import { MongoClient, MongoErrorLabel } from 'mongodb';
+import { MongoClient } from 'mongodb';
 import { MONGODB_URI } from "$env/static/private";
-
 
 export async function POST({ request }) {
   
@@ -17,7 +16,6 @@ export async function POST({ request }) {
   }
 
   MongoClient.connect(MONGODB_URI, async function(err, client) {
-
     if (err) throw err;
 
     console.log('Connected');

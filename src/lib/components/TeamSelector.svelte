@@ -17,7 +17,12 @@
   }
 </script>
 
+<!-- Temporary -->
+<Field configs={{ name: "Team #", type: "number"}} bind:value/>
+
+<!--
 <div>
   <Field configs={{ name: "Match Number", type: "number", min: 0, max: MAX_MATCH_NUM }} bind:value={match}/>
   <Field configs={{ name: "Robot", type: "select", select_options: alliances }} bind:value={alliance}/>
 </div>
+-->
