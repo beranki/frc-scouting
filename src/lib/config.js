@@ -40,27 +40,36 @@ export const fields = [
     max: 10,
   },
   {
-    name: "Times_Amplified",
-    type: "number",
-    min: 0,
-    max: 10,
+    name: "Ground_Pickup",
+    type: "bool",
+    toggle_tag: "success",
   },
   {
-    name: "Pickup_From",
-    type: "select",
-    select_options: ["Source", "Floor", "Both", "Not Attempted"]
+    name: "Source_Pickup",
+    type: "bool",
+    toggle_tag: "success",
   },
   { 
     name: "Endgame",
     type: "divider" 
   },
   {
-    name: "Final_Status",
-    type: "select",
-    select_options: ["Parked", "Onstage", "Onstage (spotlit)", "Harmony", "Attempted But Failed", "Not Attempted"]
+    name: "Parked",
+    type: "bool",
+    toggle_tag: "success"
   },
   {
-    name: "Note_in_Trap",
+    name: "Onstage",
+    type: "bool",
+    toggle_tag: "success"
+  },
+  {
+    name: "Harmony",
+    type: "bool",
+    toggle_tag: "success"
+  },
+  {
+    name: "Trap",
     type: "bool",
     toggle_tag: "success"
   },
@@ -89,19 +98,14 @@ export const fields = [
     toggle_tag: "error"
   },
   {
-    name: "Tippy",
+    name: "Incapacitated",
     type: "bool",
     toggle_tag: "error"
   },
   {
-    name: "Dropped_Notes",
+    name: "Butter_Fingers",
     type: "bool",
     toggle_tag: "error"
-  },
-  {
-    name: "Potential_Alliance_Partner",
-    type: "bool",
-    toggle_tag: "success"
   },
   { type: "divider" },
   {
@@ -109,7 +113,8 @@ export const fields = [
     type: "text",
     max: 200,
   }
-]
+];
+
 
 
 /* Returns an object containing the field keys but with undefined value.

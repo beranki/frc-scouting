@@ -30,6 +30,7 @@
       </label>
     </div>
 
+<!--
   {:else if configs.type == "select"}
 
   <span class="label-text">{configs.name}</span>
@@ -39,11 +40,12 @@
         <option>{select_option}</option>
       {/each}
     </select>
+-->
 
   {:else if configs.type == "rating"}
     
     <span class="label-text">{configs.name}</span>
-    <input type="range" min="1" max="{configs.stops-1}" class="range range-warning mt-3" step="1" bind:value />
+    <input type="range" min="1" max="{configs.stops}" class="range range-warning mt-3" step="1" bind:value />
     <div class="w-full flex justify-between text-xs px-2">
       {#each Array(configs.stops) as _, i}
         <span>{i+1}</span>
