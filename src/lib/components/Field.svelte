@@ -5,6 +5,8 @@
   export let value;
   export let select_options;
 
+  $: { configs.name = configs.name.replaceAll('_', ' ') };
+
 </script>
 
 <div class="forum-control font-poppins m-5">
