@@ -1,4 +1,6 @@
 <script>
+  import Incrementer from '$lib/components/Incrementer.svelte';
+
   export let configs;
   export let value;
   export let select_options;
@@ -17,7 +19,7 @@
 
     <span class="label-text">{configs.name}</span>
     <label class="input input-bordered flex items-center gap-2">
-      <input class="w-full" type="number" min={configs.min ?? 0} max={configs.max ?? 10} bind:value/>
+      <Incrementer min={configs.min ?? 0} max={configs.max ?? 10} bind:value/>
     </label>
 
 

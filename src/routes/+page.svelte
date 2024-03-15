@@ -15,8 +15,6 @@
   };
 
   const MAX_TEAMS = 45;
-
-  console.log("fields", Object.entries(fields));
 </script>
 
 <Title />
