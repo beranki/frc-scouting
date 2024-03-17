@@ -23,4 +23,3 @@ export async function POST({ request }) {
   // Defaults to 200
   return new Response('passed!');
 }
-

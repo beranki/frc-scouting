@@ -15,13 +15,16 @@
   };
 
   const MAX_TEAMS = 45;
+
+  /** @type {import('./$types').PageData} */
+  export let data;
 </script>
 
 <Title />
 <div>
   <Divider text={"Pre-Game"}/>
   <Field configs={{ name: "Scout Initials", type: "text", max: 2 }} bind:value={forum.scout}/>
-  <TeamSelector bind:value={forum.team}/>
+  <TeamSelector data={data} bind:value={forum.team}/>
 
   <div>
     {#each fields as field}

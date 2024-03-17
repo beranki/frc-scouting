@@ -12,6 +12,7 @@
 <div class="forum-control font-poppins m-5">
   {#if configs.type == "text"} 
 
+    <span class="label-text">{configs.name}</span>
     <label class="input input-bordered flex items-center gap-2">
       <input type="text" maxlength={configs.max ?? 200} class="grow" placeholder={configs.name} bind:value/>
     </label>
@@ -26,15 +27,21 @@
 
 
   {:else if configs.type == "bool"}
-
-    <div class="form-control">
-      <label class="label cursor-pointer">
-        <span class="label-text">{configs.name}</span> 
-        <input type="checkbox" class="toggle toggle-{configs.toggle_tag}" bind:checked={value}/>
-      </label>
-    </div>
-
-<!--
+  <div class="form-control">
+    <label class="label cursor-pointer">
+      <span class="label-text">{configs.name}</span> 
+      
+      {#if configs.toggle_tag == "green"}
+        <input type="checkbox" class="toggle toggle-success" bind:checked={value}/>
+      {:else if configs.toggle_tag == "red"}
+        <input type="checkbox" class="toggle toggle-error" bind:checked={value}/>
+      {:else if configs.toggle_tag == "blue"}
+        <input type="checkbox" class="toggle toggle-info" bind:checked={value}/>
+      {:else}
+        <input type="checkbox" class="toggle" bind:checked={value}/>
+      {/if}
+    </label>
+  </div>
   {:else if configs.type == "select"}
 
   <span class="label-text">{configs.name}</span>
@@ -44,7 +51,7 @@
         <option>{select_option}</option>
       {/each}
     </select>
--->
+  
 
   {:else if configs.type == "rating"}
     
