@@ -27,7 +27,7 @@
     console.log(match.alliances.red.team_keys);
     console.log(match.alliances.blue.team_keys);
 
-    if (alliances.indexOf(alliance) <= alliances.length) {
+    if (alliances.indexOf(alliance) <= alliances.length / 2) {
       team_key = match.alliances.red.team_keys[+alliance.slice(-1) - 1];
     } else {
       team_key = match.alliances.blue.team_keys[+alliance.slice(-1) - 1];
