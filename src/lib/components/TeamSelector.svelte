@@ -7,6 +7,7 @@
 
   const ALLIANCES = ["Red 1", "Red 2", "Red 3", "Blue 1", "Blue 2", "Blue 3"];
   const MAX_MATCH_NUM = 74;
+  const MATCHES = Array(MAX_MATCH_NUM).fill(0).map((_, i) => i+1);
 
   let { matches, teams } = data;
   
@@ -14,8 +15,13 @@
   let alliance = ALLIANCES[0];
 
   $: {
+    if (match_num < 0 || match_num > MAX_MATCH_NUM) {
+      match_num = 0;
+    }
+
     // "frc2473"
-    const teamKey = matches[match_num][alliance];
+    // -1 because "matches" is zero-indexed.
+    const teamKey = matches[match_num-1][alliance];
     // "goldstrikers"
     teamName = teams[teamKey];
     // "2473"
@@ -27,7 +33,7 @@
 
 <!-- Temporary -->
 <div>
-  <Field configs={{ name: "Match Number", type: "number", min: 0, max: MAX_MATCH_NUM }} bind:value={match_num}/>
+  <Field configs={{ name: "Match Number", type: "select", select_options: MATCHES}} bind:value={match_num}/>
   <Field configs={{ name: "Alliance", type: "select", select_options: ALLIANCES}} bind:value={alliance}/>
   <div class="text-center">{teamID}: {teamName}</div>
 </div>

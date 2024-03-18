@@ -34,4 +34,6 @@
 
 </script>
 
-<button class="btn btn-success" on:click={upload}> Upload </button>
+<div class="w-full text-center">
+  <button class="w-48 btn btn-neutral" on:click={upload}> Upload </button>
+</div>

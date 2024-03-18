@@ -22,6 +22,7 @@
 </script>
 
 <Title />
+
 <div>
   <Divider text={"Pre-Game"}/>
   <Field configs={{ name: "Scout Initials", type: "text", max: 2 }} bind:value={forum.scout}/>

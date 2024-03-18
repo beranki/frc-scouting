@@ -46,9 +46,8 @@
 
   <span class="label-text">{configs.name}</span>
     <select class="select select-bordered w-full max-w-xs" bind:value>
-      <option disabled selected>Select {configs.name}</option>
       {#each configs.select_options as select_option}
-        <option>{select_option}</option>
+        <option class="text-center">{select_option}</option>
       {/each}
     </select>
   
