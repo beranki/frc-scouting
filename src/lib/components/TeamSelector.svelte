@@ -31,7 +31,6 @@
   }
 </script>
 
-<!-- Temporary -->
 <div>
   <Field configs={{ name: "Match Number", type: "select", select_options: MATCHES}} bind:value={match_num}/>
   <Field configs={{ name: "Alliance", type: "select", select_options: ALLIANCES}} bind:value={alliance}/>

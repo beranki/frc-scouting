@@ -119,7 +119,8 @@ export const eventCode = '2024casj';
 
 /* Returns an object containing the field keys but with undefined value.
  */
-export const emptyData = () => {
+export const emptyForum = () => {
+
   const o = {};
 
   for (const { type, name } of fields) {
@@ -135,7 +136,12 @@ export const emptyData = () => {
       o[name] = '';
   }
 
-  return o;
+  return {
+    scout: "",
+    team: 0,
+    teamName: "",
+    data: o
+  };
 }
 
 /* Makes sure the forum is filled correctly
@@ -145,11 +151,6 @@ export const emptyData = () => {
 export const validate = (forum) => {
   if (!forum) 
     return { ok: false, msg: `forum undefined` };
-
-  console.log("VALIDATING", forum.team);
-  console.log("V", forum);
-  console.log("VALIDATING", typeof forum.team === 'number')
-
 
   // Fixed fields (scout initials, team number, comments)
   if (typeof forum.team !== 'number') 

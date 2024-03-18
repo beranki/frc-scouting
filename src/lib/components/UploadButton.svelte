@@ -1,20 +1,20 @@
 <script>
   import { validate } from '$lib/config.js';
+  import { emptyForum } from '$lib/config.js';
 
   export let forum;
 
   const upload = async () => {
 
     // Validation
-    console.log("pre-val", forum);
-
     const { ok, msg } = validate(forum);
     if (!ok) {
       alert("invalid forum: " + msg);
       return;
     }
 
-    console.log('uploading', forum.team);
+    // Upload
+    console.log('uploading', forum);
 
     const res = await fetch('/', {
       method: "POST",
@@ -22,14 +22,22 @@
       body: JSON.stringify(forum)
     });
 
+    // If failed, return
     if (res.status != 200) {
       const text = await res.text();
       console.log('non-200 response: ', text);
 
       alert(text);
-    } else {
-      console.log('200 received');
+      return;
     }
+
+    // On success, clear forum and scroll to top
+    console.log('200 received');
+    const scout = forum.scout;
+    forum = emptyForum(forum);
+    forum.scout = scout;
+    document.body.scrollIntoView();
+    alert("uploaded");
   }
 
 </script>

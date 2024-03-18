@@ -1,7 +1,6 @@
 import fs from 'node:fs/promises';
 import dotenv from 'dotenv';
 import { MongoClient } from "mongodb";
-import { emptyData } from './src/lib/config.js';
 dotenv.config()
 
 // Cannot import DB because db.js loads the env variable via a VITE feature

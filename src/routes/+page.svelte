@@ -1,5 +1,5 @@
 <script>
-  import { emptyData, fields } from "$lib/config.js";
+  import { emptyForum, fields } from "$lib/config.js";
 
   import Field from "$lib/components/Field.svelte";
   import Title from "$lib/components/Title.svelte";
@@ -8,12 +8,7 @@
   import TeamSelector from "$lib/components/TeamSelector.svelte";
 
 
-  const forum = {
-    scout: "",
-    team: 0,
-    teamName: "",
-    data: emptyData()
-  };
+  let forum = emptyForum();
 
   const MAX_TEAMS = 45;
 
@@ -39,7 +34,7 @@
 
     <Divider />
 
-    <UploadButton forum={forum} />
+    <UploadButton bind:forum={forum} />
   </div>
 
 </div>
