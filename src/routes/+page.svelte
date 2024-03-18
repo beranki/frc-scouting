@@ -11,6 +11,7 @@
   const forum = {
     scout: "",
     team: 0,
+    teamName: "",
     data: emptyData()
   };
 
@@ -24,7 +25,7 @@
 <div>
   <Divider text={"Pre-Game"}/>
   <Field configs={{ name: "Scout Initials", type: "text", max: 2 }} bind:value={forum.scout}/>
-  <TeamSelector data={data} bind:value={forum.team}/>
+  <TeamSelector data={data} bind:teamID={forum.team} bind:teamName={forum.teamName}/>
 
   <div>
     {#each fields as field}
