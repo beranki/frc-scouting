@@ -32,8 +32,6 @@
       {/if}
     {/each}
 
-    <Divider />
-
     <UploadButton bind:forum={forum} />
   </div>
 

@@ -2,7 +2,8 @@ import fs from 'node:fs/promises';
 import { validate } from './src/lib/config.js';
 
 console.log("reading from './svr.csv' and uploading...");
-console.log("make sure to have development server running so the upload path is available");
+console.log("NOTE: make sure to have development server running so the upload path is available");
+console.log("NOTE: This script does not empty the DB. Make sure the db is cleared before populating.");
 
 const text = await fs.readFile('./svr.csv', { encoding: 'utf8' });
 const lines = text.trim().split('\n');
