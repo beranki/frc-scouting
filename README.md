@@ -55,6 +55,4 @@ Notes for re-configuring the project for future games.
 - This application can be hosted for free on Vercel, since it is written to be serverless (read into this if needed).
 - The `svrImporter.js` file was for importing the `.csv` file of 2024's SVR scouting data as testing. This can be repurposed for further testing.
     - Similarly, `svr.csv` is the scouting data from that regional.
-- If you think there isn't enough detail in the notes, you probably aren't the right guy to maintain a website.
-
 
