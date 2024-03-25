@@ -7,18 +7,21 @@ export const fields = [
     type: "divider" 
   },
   {
-    name: "Leave_Starting_Zone",
+    name: "leave",
+    label: "Leave Starting Zone",
     type: "bool",
     toggle_tag: "success"
   },
   { 
-    name: "Auto_Amp_Scores",
+    name: "a-amp",
+    label: "Auto Amp Scores",
     type: "number",
     min: 0,
     max: 6,
   },
   { 
-    name: "Auto_Speaker_Scores",
+    name: "a-speaker",
+    label: "Auto Speaker Scores",
     type: "number",
     min: 0,
     max: 6,
@@ -28,24 +31,28 @@ export const fields = [
     type: "divider" 
   },
   {
-    name: "TeleOp_Amp_Scores",
+    name: "amp",
+    label: "TeleOp Amp Scores",
     type: "number",
     min: 0,
     max: 10,
   },
   {
-    name: "TeleOp_Speaker_Scores",
+    name: "speaker",
+    label: "TeleOp Speaker Scores",
     type: "number",
     min: 0,
     max: 30,
   },
   {
-    name: "Ground_Pickup",
+    name: "ground",
+    label: "Ground Pickup",
     type: "bool",
     toggle_tag: "success",
   },
   {
-    name: "Source_Pickup",
+    name: "source",
+    label: "Source Pickup",
     type: "bool",
     toggle_tag: "success",
   },
@@ -54,22 +61,26 @@ export const fields = [
     type: "divider" 
   },
   {
-    name: "Parked",
+    name: "park",
+    label: "Parked",
     type: "bool",
     toggle_tag: "success"
   },
   {
-    name: "Onstage",
+    name: "onstage",
+    label: "Onstage",
     type: "bool",
     toggle_tag: "success"
   },
   {
-    name: "Harmony",
+    name: "harmony",
+    label: "Harmony",
     type: "bool",
     toggle_tag: "success"
   },
   {
-    name: "Trap",
+    name: "trap",
+    label: "Trap",
     type: "bool",
     toggle_tag: "success"
   },
@@ -78,38 +89,45 @@ export const fields = [
     type: "divider" 
   },
   {
-    name: "Driver_Skill",
+    name: "driver",
+    label: "Driver Skill",
     type: "rating",
     stops: 3
   },
   {
-    name: "Defense_Rating",
+    name: "def",
+    label: "Defense Rating",
     type: "rating",
     stops: 4
   },
   {
-    name: "Speed_Rating",
+    name: "speed",
+    label: "Speed Rating",
     type: "rating",
     stops: 5
   },
   {
-    name: "Died",
+    name: "died",
+    label: "Died",
     type: "bool",
     toggle_tag: "error"
   },
   {
-    name: "Incapacitated",
+    name: "incapacitated",
+    label: "Incapacitated",
     type: "bool",
     toggle_tag: "error"
   },
   {
-    name: "Butter_Fingers",
+    name: "butterfingers",
+    label: "Butter Fingers",
     type: "bool",
     toggle_tag: "error"
   },
   { type: "divider" },
   {
-    name: "comments",
+    name: "comment",
+    label: "Comments",
     type: "text",
     max: 200,
   }

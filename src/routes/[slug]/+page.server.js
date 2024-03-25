@@ -3,82 +3,87 @@ import db from '$lib/db.js';
 import { eventCode } from '$lib/config.js';
 import { TBA_API_KEY } from "$env/static/private";
 
-
 const coll = db.collection("data");
 
-/** @type {import('./$types').PageServerLoad} */
 export async function load({ fetch, params }) {
 
-    //console.log(params.slug);
-
-    const teams = await fetch(`https://www.thebluealliance.com/api/v3/event/${eventCode}/teams/simple`, {
-        method: "GET",
-        headers: {"X-TBA-Auth-Key": TBA_API_KEY},
-    })
+  const team = Number(params.slug);
+  const teams = await fetch(`https://www.thebluealliance.com/api/v3/event/${eventCode}/teams/simple`, {
+    method: "GET",
+    headers: {"X-TBA-Auth-Key": TBA_API_KEY},
+  })
     .then(res => res.json());
 
-    let teams_list = teams.map(team_info => {return team_info.team_number;})
+  // If not in comp
+  if (!teams
+    .map(i => i.team_number)
+    .includes(team)) {
+    error(400, `team ${team} not in comp ${eventCode}`)
+  }
 
-    let team_num = Number(params.slug);
+  // Get all submitted "entries" of a team
+  const entries = await coll
+    .find({ team })
+    .toArray();
 
-    if (teams_list.includes(team_num)) {
-        const data = await coll.find({
-            team: team_num
-        }).toArray(function (err, res) {
-            if (err) throw err;
-            //console.log(res);
-        });
+  // UI sections
+  let sections = {
+    "Auto": [],
+    "TeleOp": [],
+    "Endgame": [],
+    "Ratings": [],
+    "Status": [],
+    "Comments": []
+  }
 
-        let team_data = data.map(team_info => {
+  // for each entry, put stats to their corresponding section array.
+  for (const { data } of entries) {
+    let status;
 
-            let status;
-
-            if (team_info.data.Parked) {
-                status = "Parked";
-            } else if (team_info.data.Onstage) {
-                status = "Onstage";
-            } else if (team_info.data.Harmony) {
-                status = "Harmony";
-            } else if (team_info.data.Trap) {
-                status = "Trap";
-            } else {
-                status = "DNA";
-            }
-            
-
-            return {
-                "Team": params.slug,
-                "Auto": {
-                    "Leave Starting Zone": team_info.data.Leave_Starting_Zone,
-                    "Amp Scores": team_info.data.Auto_Amp_Scores,
-                    "Speaker Scores": team_info.data.Auto_Speaker_Scores
-                },
-                "TeleOp": {
-                    "Amp Scores": team_info.data.TeleOp_Amp_Scores,
-                    "Speaker Scores": team_info.data.TeleOp_Speaker_Scores,
-                    "Ground Pickup": team_info.data.Ground_Pickup,
-                    "Source Pickup": team_info.data.Source_Pickup
-                },
-                "Endgame": {
-                    "Status": status
-                },
-                "Ratings": {
-                    "Driver Skill": team_info.data.Driver_Skill,
-                    "Defense Rating": team_info.data.Defense_Rating,
-                    "Speed Rating": team_info.data.Speed_Rating,
-                },
-                "Status": {
-                    "Died": team_info.data.Died,
-                    "Incapacitated": team_info.data.Incapacitated,
-                    "Dropped 2+ Notes": team_info.data.Butter_Fingers
-                },
-                "Comments": (team_info.data.comments == '' ? "X" : team_info.data.comments)
-            };
-        });
-
-        return {team_data};
+    if (data.Parked) {
+      status = "Parked";
+    } else if (data.Onstage) {
+      status = "Onstage";
+    } else if (data.Harmony) {
+      status = "Harmony";
+    } else if (data.Trap) {
+      status = "Trap";
+    } else {
+      status = "DNA";
     }
-    
-    error(404, "team undefined / not found");
-}
   
+
+    sections.Auto.push({
+      "Leave": data.leave,
+      "Auto-amps": data['a-amp'],
+      "Auto-speakers": data['a-speaker'],
+    });
+
+    sections.TeleOp.push({
+      "Amps": data.amp,
+      "Speakers": data.speaker,
+      "Ground": data.ground,
+      "Source": data.source,
+    });
+
+    sections.Endgame.push({
+      "Status": status
+    });
+
+    sections.Ratings.push({
+      "Driver": data.driver,
+      "Def": data.def,
+      "Speed": data.speed,
+    });
+
+    sections.Status.push({
+      "Died": data.died,
+      "Incapacitated": data.incapacitated,
+      "Drops Notes": data.butterfingers
+    });
+
+    sections.Comments.push({ comments: data.comments ? data.comments : 'n/a' });
+  }
+
+  return { team, sections };
+}

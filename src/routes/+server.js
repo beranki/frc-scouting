@@ -11,14 +11,11 @@ export async function POST({ request }) {
 
   const { ok, msg } = validate(forum);
 
-  console.log(forum);
-
   if (!ok) {
     error(400, 'forum invalid: ' + msg);
   }
 
   const result = await coll.insertOne(forum);
-  console.log("RESULT", result);
 
   // Defaults to 200
   return new Response('passed!');

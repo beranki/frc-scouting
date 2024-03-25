@@ -32,8 +32,8 @@
 </script>
 
 <div>
-  <Field configs={{ name: "Match Number", type: "select", select_options: MATCHES}} bind:value={match_num}/>
-  <Field configs={{ name: "Alliance", type: "select", select_options: ALLIANCES}} bind:value={alliance}/>
+  <Field configs={{ label: "Match Number", type: "select", select_options: MATCHES}} bind:value={match_num}/>
+  <Field configs={{ label: "Alliance", type: "select", select_options: ALLIANCES}} bind:value={alliance}/>
   <div class="text-center">{teamID}: {teamName}</div>
 </div>
 

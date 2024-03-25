@@ -32,8 +32,5 @@ export async function load({ fetch }) {
     teams[team.key] = team.nickname;
   }
 
-  console.log( matches );
-  console.log( teams );
-
   return { matches, teams };
 }

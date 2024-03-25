@@ -20,7 +20,7 @@
 
 <div>
   <Divider text={"Pre-Game"}/>
-  <Field configs={{ name: "Scout Initials", type: "text", max: 2 }} bind:value={forum.scout}/>
+  <Field configs={{ label: "Scout Initials", type: "text", max: 2 }} bind:value={forum.scout}/>
   <TeamSelector data={data} bind:teamID={forum.team} bind:teamName={forum.teamName}/>
 
   <div>

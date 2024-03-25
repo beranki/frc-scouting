@@ -43,5 +43,5 @@
 </script>
 
 <div class="w-full text-center">
-  <button class="w-48 btn btn-success font-poppins" on:click={upload}> upload </button>
+  <button class="w-48 btn font-poppins" on:click={upload}> upload </button>
 </div>
