@@ -1,6 +1,5 @@
 <script>
-  import { validate } from '$lib/config.js';
-  import { emptyForum } from '$lib/config.js';
+  import { validate, makeQR, emptyForum } from '$lib/config.js';
 
   export let forum;
 
@@ -40,8 +39,44 @@
     alert("uploaded");
   }
 
+  const showQR = async () => {
+
+    // Validation
+    const { ok, msg } = validate(forum);
+    if (!ok) {
+      alert("invalid forum: " + msg);
+      return;
+    }
+
+    // make QR
+    const qr = makeQR(forum);
+
+    console.log(qr);
+
+    // QR element
+    document.getElementById("qrcode").innerHTML = "";
+    new QRCode("qrcode", {
+      text: qr,
+      colorDark : "#000000",
+      colorLight : "#ffffff",
+      correctLevel : QRCode.CorrectLevel.H
+    });
+    document.getElementById('modal').show()
+  }
 </script>
 
-<div class="w-full text-center">
-  <button class="w-48 btn font-poppins" on:click={upload}> upload </button>
+<div class="flex flex-col items-center">
+  <div class="join">
+    <button class="w-48 btn join-item font-poppins" on:click={upload}> upload </button>
+    <button class="w-12 btn join-item font-poppins" on:click={showQR}> QR </button>
+  </div>
 </div>
+
+<dialog id="modal" class="modal">
+  <div class="modal-box w-64">
+    <div id="qrcode"></div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>

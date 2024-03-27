@@ -22,8 +22,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@tailwindcss/typography": "^0.5.10",
 		"@cubejs-client/core": "^0.31.0",
+		"@tailwindcss/typography": "^0.5.10",
 		"chart.js": "^4.0.0",
 		"dotenv": "^16.4.5",
 		"mongodb": "^6.5.0"

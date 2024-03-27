@@ -10,8 +10,6 @@
 
   let forum = emptyForum();
 
-  const MAX_TEAMS = 45;
-
   /** @type {import('./$types').PageData} */
   export let data;
 </script>

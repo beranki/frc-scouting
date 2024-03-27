@@ -181,6 +181,33 @@ export const orderedFields = () => {
   return v;
 }
 
+/* Given the forum, return the forum in CSV format
+ */
+export const makeQR = forum => {
+  if (!validate(forum).ok) {
+    console.error("makeQR() got invalid forum");
+    return "invalid forum";
+  }
+
+  let o = forum.scout + ',' +  forum.team + ',' + forum.teamName;
+  
+  for (const field of orderedFields()) {
+    if (typeof forum.data[field] === 'boolean') {
+      o += ',' + (0 + forum.data[field]);
+    } else {
+      o += ',' + forum.data[field];
+    }
+  }
+  
+  return o;
+}
+
+/* Given the string extracted from the QR code, parse into forum object and uploads
+ */
+export const uploadQR = forumCSV => {
+  // TODO:
+}
+
 /* Makes sure the forum is filled correctly
  * - msg specifies the reason for the invalidation.
  * @return { ok: bool, msg: string | undefined }
