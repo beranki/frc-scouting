@@ -6,7 +6,7 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"compile": "node exporter.js",
+		"export": "node exporter.js",
 		"import": "node svrImporter.js"
 	},
 	"devDependencies": {

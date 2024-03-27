@@ -56,6 +56,11 @@ export const fields = [
     type: "bool",
     toggle_tag: "success",
   },
+  {
+    name: "under",
+    label: "Can Go Under Stage",
+    type: "bool"
+  },
   { 
     name: "Endgame",
     type: "divider" 
@@ -160,6 +165,20 @@ export const emptyForum = () => {
     teamName: "",
     data: o
   };
+}
+
+/* Returns an array of field names, in the intended order.
+ */
+export const orderedFields = () => {
+  const v = [];
+
+  for (const { name, type } of fields) {
+    if (type == 'divider') 
+      continue;
+    v.push(name);
+  } 
+
+  return v;
 }
 
 /* Makes sure the forum is filled correctly

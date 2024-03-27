@@ -26,6 +26,7 @@ for (const line of lines) {
       "speaker": row[7],
       "ground": row[8] == 'f' || row[8] == 'b',
       "source": row[8] == 's' || row[8] == 'b',
+      "under": false,
       "park": row[10] == 'p',
       "onstage": row[10] == 'o',
       "harmony": row[10] == 'h',

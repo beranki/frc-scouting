@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import dotenv from 'dotenv';
 import { MongoClient } from "mongodb";
+import { emptyForum, orderedFields } from "./src/lib/config.js";
 dotenv.config()
 
 // Cannot import DB because db.js loads the env variable via a VITE feature
@@ -11,44 +12,16 @@ const db = client.db('scouting-data') // select database
 const coll = db.collection('data');
 
 
-// Correlates the table name (what is to be displayed on the table) to the display name
-// (what is displayed on the forum and stored as in the database).
-// Also defines the order in which the data columns will be in.
-const nameMap = [
-  ['a-amp', 'Auto_Amp_Scores'],
-  ['a-speaker', 'Auto_Speaker_Scores'],
-  ['leave%', 'Leave_Starting_Zone'],
-
-  ['amp', 'TeleOp_Amp_Scores'],
-  ['speaker', 'TeleOp_Speaker_Scores'],
-
-  ['park%', 'Parked'],
-  ['onstage%', 'Onstage'],
-  ['harmony%', 'Harmony'],
-  ['trap%', 'Trap'],
-
-  ['skill', 'Driver_Skill'],
-  ['speed', 'Speed_Rating'],
-  ['def', 'Defense_Rating'],
-
-  ['died%', 'Died'],
-  ['incap%', 'Incapacitated'],
-  ['droppy%', 'Butter_Fingers'],
-];
-
-const emptyStats = () => {
-  const o = {};
-  for (const [name, _] of nameMap) o[name] = 0;
-
-  return o;
-}
+const fields = orderedFields();
+// remove comment, we're not compiling that.
+fields.splice(fields.indexOf("comment"), 1);
 
 // TODO: Map validation. Make sure every attribute is accounted for, etc.
 
 // find teams
 const teams = {};
 for (const team of await coll.distinct('team')) 
-  teams[team] = emptyStats();
+  teams[team] = emptyForum().data;
 
 
 console.log('Recorded Teams: ', Object.keys(teams));
@@ -63,11 +36,14 @@ for (const [team, stats] of Object.entries(teams)) {
   for await (const game of games) {
     gameCnt ++;
 
-    for (const [name, dbName] of nameMap) {
-      if (game.data[dbName] == undefined) 
-        console.error(`could not read property of ${dbName} from game.data somehow? Check nameMap.`);
+    for (const name of fields) {
 
-      stats[name] += game.data[dbName];
+      // ignore comments
+      if (name == 'comment') continue;
+      if (game.data[name] == undefined) 
+        console.error(`could not read property of ${name} from game.data somehow?`);
+
+      stats[name] += game.data[name];
     }
   }
 
@@ -86,15 +62,15 @@ let file = '';
 
 // Top row
 file += 'team,';
-for (const [name, _] of nameMap) 
+for (const name of fields) 
   file += name + ',';
 file += '\n';
 
 // For each team, create row.
 for (const [team, stats] of Object.entries(teams)) {
   file += team + ',';
-  for (const [name, _] of nameMap) {
-    file += stats[name] + ',';
+  for (const name of fields) {
+    file += stats[name].toFixed(2) + ',';
   }
   file += '\n';
 }
