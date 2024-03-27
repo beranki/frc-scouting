@@ -1,5 +1,5 @@
 <script>
-  import { validate, makeQR, emptyForum } from '$lib/config.js';
+  import { validate, makeQR, uploadQR, emptyForum } from '$lib/config.js';
 
   export let forum;
 
@@ -50,8 +50,6 @@
 
     // make QR
     const qr = makeQR(forum);
-
-    console.log(qr);
 
     // QR element
     document.getElementById("qrcode").innerHTML = "";

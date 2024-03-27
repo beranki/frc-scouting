@@ -155,8 +155,6 @@ export const emptyForum = () => {
       o[name] = '';
     if (type == 'rating')
       o[name] = 1;
-    if (type == 'select')
-      o[name] = '';
   }
 
   return {
@@ -202,10 +200,28 @@ export const makeQR = forum => {
   return o;
 }
 
-/* Given the string extracted from the QR code, parse into forum object and uploads
+/* Given the string extracted from the QR code, parses and constructs a forum object
  */
-export const uploadQR = forumCSV => {
-  // TODO:
+export const parseQR = forumCSV => {
+  const forum = emptyForum();
+  const v = forumCSV.trim().split(',');
+
+  forum.scout = v[0];
+  forum.team = Number(v[1]);
+  forum.teamName = v[2];
+
+  for (const [i, field] of orderedFields().entries()) {
+    if (typeof forum.data[field] === 'boolean') 
+      forum.data[field] = v[i+3] == '1';
+    else if (typeof forum.data[field] === 'number') 
+      forum.data[field] = Number(v[i+3]);
+    else if (typeof forum.data[field] === 'string') 
+      forum.data[field] = v[i+3];
+    else 
+      console.error('uploadQR(): unexpected type in forum');
+  }
+
+  return forum;
 }
 
 /* Makes sure the forum is filled correctly
