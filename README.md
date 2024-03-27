@@ -10,7 +10,7 @@ How a team performance has varied across rounds.
 This can be viewed on the scouting site, at `/[team#]`.
 This page will show a table of the scouting data, as well as a graph of performance over rounds for graphable stats.
 
-![Screenshot 2024-03-26 221952](https://github.com/beranki/frc-scouting/assets/77950550/2e8dfea8-ceee-4eeb-a1ff-50a61afa045d)
+<img width="1440" alt="Screenshot 2024-03-26 at 11 10 35 PM" src="https://github.com/beranki/frc-scouting/assets/47164548/22f95751-35e2-4747-83e2-eeb75b7d5998">
 
 **Summative Stats**
 
