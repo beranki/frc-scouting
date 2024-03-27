@@ -37,12 +37,8 @@ export async function load({ fetch, params }) {
     const v = entries.map(i => i.data[field]);
     const avg = v.reduce((a, i) => a + i, 0) / entries.length;
 
-    table[field] = { graph: false, v, avg };
+    table[field] = { v, avg };
   }
-
-  // ask for graphs
-  table.speaker.graph = true;
-  table.amp.graph = true;
 
   // get comments
   const comments = entries.map(i => i.data.comment);

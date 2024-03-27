@@ -5,13 +5,13 @@ console.log("reading from './svr.csv' and uploading...");
 console.log("NOTE: make sure to have development server running so the upload path is available");
 console.log("NOTE: This script does not empty the DB. Make sure the db is cleared before populating.");
 
-const text = await fs.readFile('./svr.csv', { encoding: 'utf8' });
+const text = await fs.readFile('./svr2.csv', { encoding: 'utf8' });
 const lines = text.trim().split('\n');
 
 let counter = 0;
 
 for (const line of lines) {
-  const row = line.trim().split(',').map(x => isNaN(Number(x)) ? x : Number(x));
+  const row = line.trim().split(',').map(x => x === "" || isNaN(Number(x)) ? x : Number(x));
 
   const forum = {
     scout: row[0],
@@ -37,7 +37,7 @@ for (const line of lines) {
       "died": row[15] == 1,
       "incapacitated": false,
       "butterfingers": row[17] == 1,
-      "comment": "",
+      "comment": row[19],
     }
   };
 

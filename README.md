@@ -1,5 +1,5 @@
 # 2473 Scouting App
-TODO: A dummy page is hosted [here]() to try out. This is disconnected from our DB.
+TODO: A dummy page is hosted [here](https://frc-scouting-bw2v.vercel.app/) to try out.
 
 ### How to interpret 
 There are two ways in which scouting data can be presented.
@@ -16,7 +16,7 @@ This page will show a table of the scouting data, as well as a graph of performa
 
 The average of a team's performance, i.e. the average speakers scored, or the percentage of rounds where it climbed onstage.
 This statistic is exported into a `.csv` file that can then be imported to google sheets.
-Through google sheets, you can then sort or process the data further.
+The rationale for exporting is so that you can sort by each field given the averages.
 As a sample and for testing, we've imported the '24 SVR scouting data into our database.
 Here is the exported [google sheet](https://docs.google.com/spreadsheets/d/1O8MmyFpt3tY0lR3NgNLADu2RxGO6atvxuu2eQgzQhfE/edit#gid=726465529) of the summative stats of the teams at SVR. <br>
 
@@ -37,8 +37,6 @@ Notes for re-configuring the project for future games.
     - The details of configuration can be infered.
     - You can also specify to add a labeled divider, refer to source to see how.
 - `exporter.js` was also written to be programmatic, it simply takes the average for each team for each field. 
-    - What needs to be edited is the `nameMap` object; it is a look-up table that maps the field name (as defined in the `field` object) to the table name (what the column is named in the google sheet).
-        - For example, you may rename the field "Leave_Starting_Zone" into "leave%" in the exported data.
 - `config.js` also holds other configuration information.
     - `eventCode`: the event code as it is in TBA. refer to TBA documentation to find the code. 
 - Two keys are to be stored in `.env`

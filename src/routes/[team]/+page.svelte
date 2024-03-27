@@ -47,7 +47,7 @@
     </table>
   </div>
 
-  <div class="flex m-6 gap-8">
+  <div class="flex m-6 gap-4">
     <!-- Comments -->
     <table class="table table-xs text-center w-96">
       <thead>
@@ -65,11 +65,12 @@
 
     <!-- Graphs -->
     <div class="flex flex-col items-center w-96">
-      {#each Object.entries(table) as [name, { avg, graph, v } ]}
-        {#if graph}
-          <StatsGraph supers={name} brand={name} stats={v} /> 
-        {/if}
-      {/each}
+      <StatsGraph supers="auto amps" brand="auto amps" stats={table['a-amp'].v} /> 
+      <StatsGraph supers="auto speaker" brand="auto speaker" stats={table['a-speaker'].v} /> 
+    </div>
+    <div class="flex flex-col items-center w-96">
+      <StatsGraph supers="amps" brand="amps" stats={table['amp'].v} /> 
+      <StatsGraph supers="speaker" brand="speaker" stats={table['speaker'].v} /> 
     </div>
   </div>
 
