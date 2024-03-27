@@ -4,13 +4,13 @@ TODO: A dummy page is hosted [here]() to try out. This is disconnected from our 
 ### How to interpret 
 There are two ways in which scouting data can be presented.
 
-**Per-Round Stats** TODO
+**Per-Round Stats** 
 
 How a team performance has varied across rounds.
-This can be viewd on the scouting site, at `/[team#]`.
+This can be viewed on the scouting site, at `/[team#]`.
 This page will show a table of the scouting data, as well as a graph of performance over rounds for graphable stats.
 
-[screenshot of page]
+![Screenshot 2024-03-26 221952](https://github.com/beranki/frc-scouting/assets/77950550/2e8dfea8-ceee-4eeb-a1ff-50a61afa045d)
 
 **Summative Stats**
 
@@ -19,7 +19,6 @@ This statistic is exported into a `.csv` file that can then be imported to googl
 Through google sheets, you can then sort or process the data further.
 As a sample and for testing, we've imported the '24 SVR scouting data into our database.
 Here is the exported [google sheet](https://docs.google.com/spreadsheets/d/1O8MmyFpt3tY0lR3NgNLADu2RxGO6atvxuu2eQgzQhfE/edit#gid=726465529) of the summative stats of the teams at SVR. <br>
-
 
 **How to Export**
 Preferably have the developers do this for you.
@@ -31,7 +30,7 @@ Preferably have the developers do this for you.
 ### Configuration
 
 Notes for re-configuring the project for future games. 
-- The forum structure is completely configurable through the `fields` export in `configs.js`
+- The forum structure is completely configurable through the `fields` export in `config.js`
     - It supports three types of input: "Number", "Rating", and "Boolean"
     - There are obviously other ways to input forum data, but we choose only to implement types that we can easily take the average of, that way compiling our data will be simpler.
     - Each type have settings to restrict the range, etc.
