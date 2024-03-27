@@ -13,7 +13,7 @@
 <div class="flex flex-col items-center w-max max-w-2xl m-4 gap-2">
 
   <div class="overflow-x-auto">
-    <table class="table table-xs">
+    <table class="table table-sm">
       <thead>
         <tr>
           <th></th>
@@ -57,7 +57,7 @@
       <tbody>
         {#each comments as comment}
           <tr>
-            <th>{comment === "" ? "None" : comment}</th>
+            <th class="text-lg">{comment === "" ? "None" : comment}</th>
           </tr>
         {/each}
       </tbody>

@@ -95,37 +95,37 @@ export const fields = [
   },
   {
     name: "driver",
-    label: "Driver Skill",
+    label: "Driver Skill (higher is better)",
     type: "rating",
     stops: 3
   },
   {
     name: "def",
-    label: "Defense Rating",
+    label: "Defense Rating (higher is better)",
     type: "rating",
     stops: 4
   },
   {
     name: "speed",
-    label: "Speed Rating",
+    label: "Speed Rating (higher is better)",
     type: "rating",
     stops: 5
   },
   {
     name: "died",
-    label: "Died",
+    label: "Died and Cannot Move",
     type: "bool",
     toggle_tag: "error"
   },
   {
     name: "incapacitated",
-    label: "Incapacitated",
+    label: "Moves but Dysfunctional",
     type: "bool",
     toggle_tag: "error"
   },
   {
     name: "butterfingers",
-    label: "Butter Fingers",
+    label: "Drops Notes (>2)",
     type: "bool",
     toggle_tag: "error"
   },

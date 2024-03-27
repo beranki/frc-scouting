@@ -7,7 +7,7 @@
 
 </script>
 
-<div class="forum-control font-poppins m-5">
+<div class="forum-control font-poppins m-5 w-64">
   {#if configs.type == "text"} 
 
     <span class="label-text">{configs.label}</span>
