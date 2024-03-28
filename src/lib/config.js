@@ -218,7 +218,7 @@ export const parseQR = forumCSV => {
     else if (typeof forum.data[field] === 'string') 
       forum.data[field] = v[i+3];
     else 
-      console.error('uploadQR(): unexpected type in forum');
+      console.error('parseQR(): unexpected type in forum');
   }
 
   return forum;

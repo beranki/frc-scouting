@@ -10,9 +10,9 @@
   <div class="text-6xl py-4 font-bold text-yellow-500 bg-neutral">{team}</div>
 </div>
 
-<div class="flex flex-col items-center w-max max-w-2xl m-4 gap-2">
+<div class="flex flex-col items-center w-full m-4 gap-2">
 
-  <div class="overflow-x-auto">
+  <div class="w-[100%] overflow-x-auto">
     <table class="table table-sm">
       <thead>
         <tr>
@@ -47,7 +47,7 @@
     </table>
   </div>
 
-  <div class="flex m-6 gap-4">
+  <div class="flex flex-wrap w-full m-6 gap-4">
     <!-- Comments -->
     <table class="table table-xs text-center w-96">
       <thead>

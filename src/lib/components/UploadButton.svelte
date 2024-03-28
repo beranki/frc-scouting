@@ -1,5 +1,5 @@
 <script>
-  import { validate, makeQR, uploadQR, emptyForum } from '$lib/config.js';
+  import { validate, makeQR, emptyForum } from '$lib/config.js';
 
   export let forum;
 
