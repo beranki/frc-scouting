@@ -47,7 +47,17 @@
     </table>
   </div>
 
-  <div class="flex flex-wrap w-full m-6 gap-4">
+  <div class="flex flex-wrap w-full justify-center m-6 gap-4">
+    <!-- Graphs -->
+    <div class="flex flex-col items-center w-96">
+      <StatsGraph supers="auto amps" brand="auto amps" stats={table['a-amp'].v} /> 
+      <StatsGraph supers="auto speaker" brand="auto speaker" stats={table['a-speaker'].v} /> 
+    </div>
+    <div class="flex flex-col items-center w-96">
+      <StatsGraph supers="amps" brand="amps" stats={table['amp'].v} /> 
+      <StatsGraph supers="speaker" brand="speaker" stats={table['speaker'].v} /> 
+    </div>
+
     <!-- Comments -->
     <table class="table table-xs text-center w-96">
       <thead>
@@ -62,16 +72,6 @@
         {/each}
       </tbody>
     </table>
-
-    <!-- Graphs -->
-    <div class="flex flex-col items-center w-96">
-      <StatsGraph supers="auto amps" brand="auto amps" stats={table['a-amp'].v} /> 
-      <StatsGraph supers="auto speaker" brand="auto speaker" stats={table['a-speaker'].v} /> 
-    </div>
-    <div class="flex flex-col items-center w-96">
-      <StatsGraph supers="amps" brand="amps" stats={table['amp'].v} /> 
-      <StatsGraph supers="speaker" brand="speaker" stats={table['speaker'].v} /> 
-    </div>
   </div>
 
   <!--
