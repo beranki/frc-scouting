@@ -1,8 +1,7 @@
 import { error } from '@sveltejs/kit';
 import db from '$lib/db.js';
-import { eventCode } from '$lib/config.js';
+import { eventCode, orderedFields } from '$lib/config.js';
 import { TBA_API_KEY } from "$env/static/private";
-import {orderedFields} from '../../lib/config';
 
 const coll = db.collection("data");
 
