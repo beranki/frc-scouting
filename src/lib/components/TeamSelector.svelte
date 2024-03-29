@@ -6,7 +6,7 @@
   export let data;
 
   const ALLIANCES = ["Red 1", "Red 2", "Red 3", "Blue 1", "Blue 2", "Blue 3"];
-  const MAX_MATCH_NUM = 74;
+  const MAX_MATCH_NUM = 66;
   const MATCHES = Array(MAX_MATCH_NUM).fill(0).map((_, i) => i+1);
 
   let { matches, teams } = data;
