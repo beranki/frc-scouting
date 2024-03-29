@@ -2,9 +2,24 @@
   import { orderedFields } from '$lib/config.js';
 
   export let data;
-  const { teams } = data;
+  let { teams } = data;
   const fields = orderedFields();
   fields.splice(fields.indexOf('comment'), 1);
+
+  const sort = (field) => {
+    console.log(`sorting by ${field}`);
+    teams.sort((a, b) => {
+      if (a.stats[field] < b.stats[field]) {
+        return 1;
+      }
+      if (a.stats[field] > b.stats[field]) {
+        return -1;
+      }
+      return 0;
+    });
+    console.log(teams.map(i => i.team));
+    teams = teams;
+  }
 </script>
 
 <div class="font-mono w-full text-center">
@@ -18,12 +33,12 @@
         <tr>
           <th></th>
           {#each fields as field}
-            <th>{field}</th>
+            <th on:click={_ => sort(field)}>{field}</th>
           {/each}
         </tr>
       </thead> 
       <tbody>
-        {#each Object.entries(teams) as [team, stats]}
+        {#each teams as { team, stats }}
           <tr>
             <th>{team}</th> 
             {#each fields as field}
