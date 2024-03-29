@@ -10,6 +10,12 @@
   <div class="text-6xl py-4 font-bold text-yellow-500 bg-neutral">{team}</div>
 </div>
 
+{#if length === 0}
+
+<p>No entries yet</p>
+
+{:else}
+
 <div class="flex flex-col items-center w-full m-4 gap-2">
 
   <div class="w-[100%] overflow-x-auto">
@@ -78,3 +84,4 @@
     <button class="font-mono m-10 text-3xl btn btn-success w-1/4">Return to Picklist</button>
   -->
 </div>
+{/if}
