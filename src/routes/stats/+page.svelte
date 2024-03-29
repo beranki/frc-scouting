@@ -12,7 +12,6 @@
 </div>
 
 <div class="flex flex-col items-center w-full m-4 gap-2">
-
   <div class="w-[100%] overflow-x-auto">
     <table class="table table-sm">
       <thead>
