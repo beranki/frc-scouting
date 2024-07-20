@@ -138,7 +138,7 @@ export const fields = [
   }
 ];
 
-export const eventCode = '2024camb';
+export const eventCode = '2024sunshow';
 
 /* Returns an object containing the field keys but with undefined value.
  */

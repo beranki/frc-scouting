@@ -22,7 +22,7 @@ Here is the exported [google sheet](https://docs.google.com/spreadsheets/d/1O8Mm
 
 **How to Export**
 Preferably have the developers do this for you.
-- `npm run compile`
+- `npm run export`
 - This will produce a `export.csv`
 - In google sheets, go to `file > import` and select the `export.csv`
 - From there you should have a file that looks like the screeshot above.
