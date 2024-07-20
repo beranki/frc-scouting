@@ -2,7 +2,6 @@ import { TBA_API_KEY } from "$env/static/private";
 import { eventCode } from "$lib/config.js";
 
 export async function load({ fetch }) {
-  console.log('yah yah');
 
   const matches = 
     (await fetch(`https://www.thebluealliance.com/api/v3/event/${eventCode}/matches/simple`, {

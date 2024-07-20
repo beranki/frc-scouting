@@ -17,6 +17,8 @@ export async function POST({ request }) {
 
   const result = await coll.insertOne(forum);
 
+  console.log('uploaded ', forum.team);
+
   // Defaults to 200
   return new Response('passed!');
 }

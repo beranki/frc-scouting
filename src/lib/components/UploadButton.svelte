@@ -2,6 +2,15 @@
   import { validate, makeQR, emptyForum } from '$lib/config.js';
 
   export let forum;
+  let uploading = false;
+
+  // Disables button to prevent repost
+  const uploadWrapped = async () => {
+    if (uploading) return;
+    uploading = true;
+    await upload();
+    uploading = false;
+  }
 
   const upload = async () => {
 
@@ -65,7 +74,7 @@
 
 <div class="flex flex-col items-center">
   <div class="join">
-    <button class="w-48 btn join-item font-poppins" on:click={upload}> upload </button>
+    <button class="w-48 btn join-item font-poppins" on:click={uploadWrapped} disabled={uploading}> upload </button>
     <button class="w-12 btn join-item font-poppins" on:click={showQR}> QR </button>
   </div>
 </div>
