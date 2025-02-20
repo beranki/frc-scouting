@@ -1,27 +1,63 @@
 /* Defines the name of a field and the type, as well as any other configurations relevant
  * A 'divider' type will create a divider in that order. It will not affect the forum
  */
+/*
+Capability
+Algae clearing
+L1
+L2
+L3
+L4
+Ground Intake?
+Auto
+Leave ?
+Reef Cycles
+Proc Cycles
+Net Cycles
+Teleop
+Reef Cycles
+Proc Cycles
+Net Cycles
+Endgame
+Shallow?
+Deep?
+Park?
+Misc
+Driver (1-5)
+Speed (1-5)
+Died?
+Dysfunctional?
+Stuck?
+*/
 export const fields = [
+
   { 
     name: "Auto",
     type: "divider" 
   },
-  {
+  { 
     name: "leave",
-    label: "Leave Starting Zone",
+    label: "Leave?",
     type: "bool",
     toggle_tag: "success"
   },
   { 
-    name: "a-amp",
-    label: "Auto Amp Scores",
+    name: "a-reef",
+    label: "Auto Reef Cycles",
     type: "number",
     min: 0,
     max: 6,
   },
   { 
-    name: "a-speaker",
-    label: "Auto Speaker Scores",
+    name: "a-proc",
+    label: "Auto Processor Cycles",
+    type: "number",
+    min: 0,
+    max: 6,
+  },
+  { 
+    name: "a-net",
+    label: "Auto Net Cycles",
     type: "number",
     min: 0,
     max: 6,
@@ -31,36 +67,32 @@ export const fields = [
     type: "divider" 
   },
   {
-    name: "amp",
-    label: "TeleOp Amp Scores",
+    name: "bias",
+    label: "Favorite Reef Level (most used level)",
+    type: "rating",
+    stops: 4
+  },
+  { 
+    name: "reef",
+    label: "Reef Cycles",
+    type: "number",
+    min: 0,
+    max: 20,
+  },
+  { 
+    name: "proc",
+    label: "Processor Cycles",
     type: "number",
     min: 0,
     max: 10,
   },
-  {
-    name: "speaker",
-    label: "TeleOp Speaker Scores",
+  { 
+    name: "net",
+    label: "Net Cycles",
     type: "number",
     min: 0,
-    max: 30,
-  },
-  {
-    name: "ground",
-    label: "Ground Pickup",
-    type: "bool",
-    toggle_tag: "success",
-  },
-  {
-    name: "source",
-    label: "Source Pickup",
-    type: "bool",
-    toggle_tag: "success",
-  },
-  {
-    name: "under",
-    label: "Can Go Under Stage",
-    type: "bool"
-  },
+    max: 10,
+  }, 
   { 
     name: "Endgame",
     type: "divider" 
@@ -72,20 +104,30 @@ export const fields = [
     toggle_tag: "success"
   },
   {
-    name: "onstage",
-    label: "Onstage",
+    name: "shallow",
+    label: "Shallow Climb",
     type: "bool",
     toggle_tag: "success"
   },
   {
-    name: "harmony",
-    label: "Harmony",
+    name: "deep",
+    label: "Deep Climb",
     type: "bool",
     toggle_tag: "success"
   },
+  { 
+    name: "Capability",
+    type: "divider" 
+  },
   {
-    name: "trap",
-    label: "Trap",
+    name: "clr",
+    label: "Algae Clearing",
+    type: "bool",
+    toggle_tag: "success"
+  },
+  { 
+    name: "ground",
+    label: "Ground Intake?",
     type: "bool",
     toggle_tag: "success"
   },
@@ -95,15 +137,16 @@ export const fields = [
   },
   {
     name: "driver",
-    label: "Driver Skill (higher is better)",
+    label: "Driver Cycling Skill (higher is better)",
     type: "rating",
-    stops: 3
+    stops: 5
   },
+
   {
     name: "def",
     label: "Defense Rating (higher is better)",
     type: "rating",
-    stops: 4
+    stops: 5
   },
   {
     name: "speed",
@@ -118,14 +161,8 @@ export const fields = [
     toggle_tag: "error"
   },
   {
-    name: "incapacitated",
-    label: "Moves but Dysfunctional",
-    type: "bool",
-    toggle_tag: "error"
-  },
-  {
-    name: "butterfingers",
-    label: "Drops Notes (>2)",
+    name: "inc",
+    label: "Moves but Dysfunctional, or stuck element",
     type: "bool",
     toggle_tag: "error"
   },
@@ -138,7 +175,7 @@ export const fields = [
   }
 ];
 
-export const eventCode = '2024sunshow';
+export const eventCode = '2024camb';
 
 /* Returns an object containing the field keys but with undefined value.
  */

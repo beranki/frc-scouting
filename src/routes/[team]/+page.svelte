@@ -3,7 +3,7 @@
 
   export let data;
   const { team, table, comments } = data;
-  const length = table.speaker.v.length;
+  const length = table.reef.v.length;
 </script>
 
 <div class="font-mono w-full text-center">
