@@ -115,6 +115,12 @@ export const fields = [
     type: "bool",
     toggle_tag: "success"
   },
+  {
+    name: "cspeed",
+    label: "Climb Speed (higher is better)",
+    type: "rating",
+    stops: 5
+  },
   { 
     name: "Capability",
     type: "divider" 
