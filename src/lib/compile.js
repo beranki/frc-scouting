@@ -1,8 +1,28 @@
 import db from '$lib/db.js';
-import { orderedFields, emptyForum } from '$lib/config.js';
+import { orderedFields, fields } from '$lib/config.js';
 
 const cache = db.collection("cache");
 const coll = db.collection("data");
+
+/* Returns an object containing the field keys but with zero value, used for compiling
+ */
+export const zeroedForum = () => {
+
+  const o = {};
+
+  for (const { type, name } of fields) {
+    if (type == 'number') 
+      o[name] = 0;
+    if (type == 'bool') 
+      o[name] = false;
+    if (type == 'text') 
+      o[name] = '';
+    if (type == 'rating')
+      o[name] = 0;
+  }
+
+  return o;
+}
 
 const recompile = async () => {
 
@@ -13,7 +33,7 @@ const recompile = async () => {
   // find teams
   const teams = {};
   for (const team of await coll.distinct('team')) 
-    teams[team] = emptyForum().data;
+    teams[team] = zeroedForum();
 
   // aggregate average
   for (const [team, stats] of Object.entries(teams)) {

@@ -143,7 +143,7 @@ export const fields = [
   },
   {
     name: "driver",
-    label: "Driver Cycling Skill (higher is better)",
+    label: "Driver Cycling Speed (higher is better)",
     type: "rating",
     stops: 5
   },
@@ -151,12 +151,6 @@ export const fields = [
   {
     name: "def",
     label: "Defense Rating (higher is better)",
-    type: "rating",
-    stops: 5
-  },
-  {
-    name: "speed",
-    label: "Speed Rating (higher is better)",
     type: "rating",
     stops: 5
   },
@@ -183,7 +177,8 @@ export const fields = [
 
 export const eventCode = '2024camb';
 
-/* Returns an object containing the field keys but with undefined value.
+
+/* Returns an object containing the field keys but with default value.
  */
 export const emptyForum = () => {
 

@@ -56,12 +56,12 @@
   <div class="flex flex-wrap w-full justify-center m-6 gap-4">
     <!-- Graphs -->
     <div class="flex flex-col items-center w-96">
-      <StatsGraph supers="auto amps" brand="auto amps" stats={table['a-amp'].v} /> 
-      <StatsGraph supers="auto speaker" brand="auto speaker" stats={table['a-speaker'].v} /> 
+      <StatsGraph supers="auto reefs" brand="auto reefs" stats={table['a-reef'].v} /> 
+      <StatsGraph supers="auto processor" brand="auto processor" stats={table['a-proc'].v} /> 
     </div>
     <div class="flex flex-col items-center w-96">
-      <StatsGraph supers="amps" brand="amps" stats={table['amp'].v} /> 
-      <StatsGraph supers="speaker" brand="speaker" stats={table['speaker'].v} /> 
+      <StatsGraph supers="reef" brand="reef" stats={table['reef'].v} /> 
+      <StatsGraph supers="processor" brand="processor" stats={table['proc'].v} /> 
     </div>
 
     <!-- Comments -->

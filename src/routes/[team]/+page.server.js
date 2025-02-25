@@ -42,5 +42,6 @@ export async function load({ fetch, params }) {
   // get comments
   const comments = entries.map(i => i.data.comment);
 
+
   return { team, table, comments };
 }
