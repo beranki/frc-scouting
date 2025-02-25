@@ -117,7 +117,7 @@ export const fields = [
   },
   {
     name: "cspeed",
-    label: "Climb Speed (higher is better)",
+    label: "Climb Speed (higher is better) (0 for no climb)",
     type: "rating",
     stops: 5
   },
