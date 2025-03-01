@@ -175,7 +175,7 @@ export const fields = [
   }
 ];
 
-export const eventCode = '2024camb';
+export const eventCode = '2025camb';
 
 
 /* Returns an object containing the field keys but with default value.
