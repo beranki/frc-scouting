@@ -56,8 +56,8 @@ export const fields = [
     max: 6,
   },
   { 
-    name: "a-net",
-    label: "Auto Net Cycles",
+    name: "a-barge",
+    label: "Auto Barge Cycles",
     type: "number",
     min: 0,
     max: 6,
@@ -87,8 +87,8 @@ export const fields = [
     max: 10,
   },
   { 
-    name: "net",
-    label: "Net Cycles",
+    name: "barge",
+    label: "Barge Cycles",
     type: "number",
     min: 0,
     max: 10,
@@ -175,7 +175,7 @@ export const fields = [
   }
 ];
 
-export const eventCode = '2025camb';
+export const eventCode = '2025capt';
 
 
 /* Returns an object containing the field keys but with default value.
